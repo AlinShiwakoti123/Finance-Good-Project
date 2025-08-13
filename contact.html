@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - FinanceWise Consultancy</title>
+    <meta name="description" content="Get in touch with FinanceWise Consultancy for expert financial advice and consultation services.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>FinanceWise Consultancy</h1>
+            <p>Your trusted partner for financial growth</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+    </nav>
+
+    <div class="banner">
+        <img src="images/contact-banner.jpg" alt="Contact Us" class="banner-img">
+    </div>
+
+    <main>
+        <section class="page-content">
+            <div class="container">
+                <h2>Contact Us</h2>
+                
+                <div class="contact-form">
+                    <p>Get in touch with us for expert financial consultation and personalized advice.</p>
+                    
+                    <form onsubmit="return submitForm();">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 FinanceWise Consultancy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            alert("Thank you, " + name + "! Your message has been sent. We'll get back to you soon.");
+            return false;
+        }
+    </script>
+</body>
+</html>
