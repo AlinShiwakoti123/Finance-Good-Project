@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - FinanceWise Consultancy</title>
+    <meta name="description" content="Get in touch with FinanceWise Consultancy for expert financial advice and consultation services.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>FinanceWise Consultancy</h1>
+            <p>Your trusted partner for financial growth</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html" class="active">Contact</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+        </div>
+    </nav>
+
+    <div class="banner">
+        <img src="images/contact-banner.jpg" alt="Contact Us" class="banner-img">
+    </div>
+
+    <main>
+        <section class="page-content">
+            <div class="container">
+                <h2>Contact Us</h2>
+                
+                <div class="contact-form">
+                    <div class="contact-intro">
+                        <img src="https://imgs.search.brave.com/6ITaAE5HYlYTNI5eKjdsswX6_SmJaaocg1hBBLcJPo8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS12ZWN0b3Iv/Y29udGFjdC11cy1i/dXR0b25fMjMtMjE0/NzUwMTI5MS5qcGc_/c2VtdD1haXNfaHli/cmlkJnc9NzQwJnE9/ODA" alt="Contact Form" class="contact-image">
+                        <p>Get in touch with us for expert financial consultation and personalized advice.</p>
+                    </div>
+                    
+                    <form id="contactForm" onsubmit="return submitForm(event);">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                            <span class="error-message" id="nameError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9]{10,}" title="Please enter at least 10 digits">
+                            <span class="error-message" id="phoneError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Please select a subject</option>
+                                <option value="consultation">Financial Consultation</option>
+                                <option value="investment">Investment Advice</option>
+                                <option value="planning">Financial Planning</option>
+                                <option value="business">Business Strategy</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="error-message" id="subjectError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" rows="5" required minlength="10"></textarea>
+                            <span class="error-message" id="messageError"></span>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 FinanceWise Consultancy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.textContent = '';
+            });
+            
+            // Name validation
+            const name = document.getElementById('name').value.trim();
+            if (name.length < 2) {
+                document.getElementById('nameError').textContent = 'Name must be at least 2 characters long';
+                isValid = false;
+            }
+            
+            // Email validation
+            const email = document.getElementById('email').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                isValid = false;
+            }
+            
+            // Phone validation (optional but if provided must be valid)
+            const phone = document.getElementById('phone').value.trim();
+            if (phone && !/^[0-9]{10,}$/.test(phone.replace(/[-\s]/g, ''))) {
+                document.getElementById('phoneError').textContent = 'Please enter a valid phone number (at least 10 digits)';
+                isValid = false;
+            }
+            
+            // Subject validation
+            const subject = document.getElementById('subject').value;
+            if (!subject) {
+                document.getElementById('subjectError').textContent = 'Please select a subject';
+                isValid = false;
+            }
+            
+            // Message validation
+            const message = document.getElementById('message').value.trim();
+            if (message.length < 10) {
+                document.getElementById('messageError').textContent = 'Message must be at least 10 characters long';
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        function submitForm(event) {
+            event.preventDefault();
+            
+            if (validateForm()) {
+                const name = document.getElementById('name').value;
+                alert("Thank you, " + name + "! Your message has been sent. We'll get back to you within 24 hours.");
+                document.getElementById('contactForm').reset();
+            }
+            
+            return false;
+        }
+        
+        // Real-time validation
+        document.getElementById('name').addEventListener('blur', function() {
+            if (this.value.trim().length < 2) {
+                document.getElementById('nameError').textContent = 'Name must be at least 2 characters long';
+            } else {
+                document.getElementById('nameError').textContent = '';
+            }
+        });
+        
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(this.value.trim())) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+            } else {
+                document.getElementById('emailError').textContent = '';
+            }
+        });
+        
+        document.getElementById('message').addEventListener('blur', function() {
+            if (this.value.trim().length < 10) {
+                document.getElementById('messageError').textContent = 'Message must be at least 10 characters long';
+            } else {
+                document.getElementById('messageError').textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>
